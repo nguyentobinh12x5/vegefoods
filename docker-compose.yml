@@ -1,0 +1,33 @@
+version: "3.4"
+
+services:
+  server:
+    image: server
+    build:
+      context: server
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development`
+    ports:
+      - 3000:3000
+
+  vegefood:
+    image: vegefood
+    build:
+      context: vegefood
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: development
+    ports:
+      - 4200:4200
+    depends_on:
+      - server
+    develop:
+      watch:
+        - path: ./vegefood/package.json
+          action: rebuild
+        - path: ./vegefood/package-lock.json
+          action: rebuild
+        - path: ./vegefood
+          target: /app
+          action: sync

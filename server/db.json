@@ -1,0 +1,68 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Bell Pepper",
+      "image": "/images/product-1.jpg",
+      "priceOriginal": "120.00",
+      "priceSales": "80.00",
+      "status": "30"
+    },
+    {
+      "id": 2,
+      "name": "Strawberry",
+      "image": "/images/product-2.jpg",
+      "priceOriginal": "120.00",
+      "priceSales": null,
+      "status": null
+    },
+    {
+      "id": 3,
+      "name": "Green Beans",
+      "image": "/images/product-3.jpg",
+      "priceOriginal": "120.00",
+      "priceSales": null,
+      "status": null
+    },
+    {
+      "id": 4,
+      "name": "Purple Cabbage",
+      "image": "/images/product-4.jpg",
+      "priceOriginal": "120.00",
+      "priceSales": null,
+      "status": null
+    },
+    {
+      "id": 5,
+      "name": "Tomatoe",
+      "image": "/images/product-5.jpg",
+      "priceOriginal": "120.00",
+      "priceSales": "80.00",
+      "status": "30"
+    },
+    {
+      "id": 6,
+      "name": "Brocolli",
+      "image": "/images/product-6.jpg",
+      "priceOriginal": "120.00",
+      "priceSales": null,
+      "status": null
+    },
+    {
+      "id": 7,
+      "name": "Carrots",
+      "image": "/images/product-7.jpg",
+      "priceOriginal": "120.00",
+      "priceSales": null,
+      "status": null
+    },
+    {
+      "id": 8,
+      "name": "Fruit Juice",
+      "image": "/images/product-8.jpg",
+      "priceOriginal": "120.00",
+      "priceSales": null,
+      "status": null
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+<div
+  class="hero-wrap hero-bread"
+  style="background-image: url('images/bg_1.jpg')"
+>
+  <div class="container">
+    <div
+      class="row no-gutters slider-text align-items-center justify-content-center"
+    >
+      <div class="col-md-9 ftco-animate text-center">
+        <h1 class="mb-0 bread">My Wishlist</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section ftco-cart">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ftco-animate">
+        <div class="cart-list">
+          <table class="table">
+            <thead class="thead-primary">
+              <tr class="text-center">
+                <th>&nbsp;</th>
+                <th>Product List</th>
+                <th>&nbsp;</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="wishlistItems.length > 0">
+              <tr class="text-center" *ngFor="let item of wishlistItems">
+                <td class="product-remove">
+                  <a (click)="removeItem(item.id)" class="mr-2"
+                    ><span class="ion-ios-close"></span
+                  ></a>
+                  <a (click)="addToCart(item)"
+                    ><span class="ion-ios-cart"></span
+                  ></a>
+                </td>
+
+                <td class="image-prod">
+                  <div
+                    class="img"
+                    [ngStyle]="{
+                      'background-image': 'url(' + item.image + ')'
+                    }"
+                  ></div>
+                </td>
+
+                <td class="product-name">
+                  <h3>{{ item.name }}</h3>
+                  <p>
+                    Far far away, behind the word mountains, far from the
+                    countries
+                  </p>
+                </td>
+                <td class="price" *ngIf="item.status">{{ item.priceSales }}</td>
+                <td class="price" *ngIf="!item.status">
+                  {{ item.priceOriginal }}
+                </td>
+
+                <td class="quantity">
+                  <div class="input-group mb-3">
+                    <button
+                      class="quantity-left-minus btn"
+                      type="button"
+                      (click)="decreaseQuantity(item.id)"
+                    >
+                      <i class="ion-ios-remove"></i>
+                    </button>
+                    <input
+                      type="number"
+                      name="quantity"
+                      class="quantity form-control input-number mx-1"
+                      value="{{ item.quantity }}"
+                      disabled
+                    />
+                    <button
+                      class="quantity-right-plus btn"
+                      type="button"
+                      (click)="increaseQuantity(item.id)"
+                    >
+                      <i class="ion-ios-add"></i>
+                    </button>
+                  </div>
+                </td>
+
+                <td class="total">{{ item.priceOriginal * item.quantity }}</td>
+              </tr>
+              <!-- END TR-->
+            </tbody>
+
+            <tbody *ngIf="wishlistItems.length == 0">
+              <tr class="text-center">
+                <td colspan="6">
+                  <h3>No items in wishlist</h3>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

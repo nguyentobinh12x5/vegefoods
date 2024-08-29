@@ -1,0 +1,190 @@
+<div
+  class="hero-wrap hero-bread"
+  style="background-image: url('images/bg_1.jpg')"
+>
+  <div class="container">
+    <div
+      class="row no-gutters slider-text align-items-center justify-content-center"
+    >
+      <div class="col-md-9 ftco-animate text-center">
+        <h1 class="mb-0 bread">My Cart</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="ftco-section ftco-cart">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 ftco-animate">
+        <div class="cart-list">
+          <table class="table">
+            <thead class="thead-primary">
+              <tr class="text-center">
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>Product name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="cartItems.length > 0">
+              <tr class="text-center" *ngFor="let item of cartItems">
+                <td class="product-remove">
+                  <a (click)="removeItem(item.id)" class="mr-2"
+                    ><span class="ion-ios-close"></span
+                  ></a>
+                  <a (click)="addToWishlist(item)"
+                    ><span class="ion-ios-heart"></span
+                  ></a>
+                </td>
+
+                <td class="image-prod">
+                  <div
+                    class="img"
+                    [ngStyle]="{
+                      'background-image': 'url(' + item.image + ')'
+                    }"
+                  ></div>
+                </td>
+
+                <td class="product-name">
+                  <h3>{{ item.name }}</h3>
+                  <p>
+                    Far far away, behind the word mountains, far from the
+                    countries
+                  </p>
+                </td>
+                <td class="price" *ngIf="item.status">{{ item.priceSales }}</td>
+                <td class="price" *ngIf="!item.status">
+                  {{ item.priceOriginal }}
+                </td>
+                <td class="quantity">
+                  <div class="input-group mb-3">
+                    <button
+                      class="quantity-left-minus btn"
+                      type="button"
+                      (click)="decreaseQuantity(item.id)"
+                    >
+                      <i class="ion-ios-remove"></i>
+                    </button>
+                    <input
+                      type="number"
+                      name="quantity"
+                      class="quantity form-control input-number mx-1"
+                      value="{{ item.quantity }}"
+                      disabled
+                    />
+                    <button
+                      class="quantity-right-plus btn"
+                      type="button"
+                      (click)="increaseQuantity(item.id)"
+                    >
+                      <i class="ion-ios-add"></i>
+                    </button>
+                  </div>
+                </td>
+
+                <td class="total" *ngIf="!item.status">
+                  {{ item.priceOriginal * item.quantity }}
+                </td>
+                <td class="total" *ngIf="item.status">
+                  {{ item.priceSales * item.quantity }}
+                </td>
+              </tr>
+              <!-- END TR-->
+            </tbody>
+            <tbody *ngIf="cartItems.length == 0">
+              <tr class="text-center">
+                <td colspan="6">
+                  <h3>No items in Cart</h3>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-end">
+      <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+        <div class="cart-total mb-3">
+          <h3>Coupon Code</h3>
+          <p>Enter your coupon code if you have one</p>
+          <form action="#" class="info">
+            <div class="form-group">
+              <label for="">Coupon code</label>
+              <input
+                type="text"
+                id="coupon"
+                class="form-control text-left px-3"
+                placeholder="Enter SAVE10"
+                [(ngModel)]="couponCode"
+                [ngModelOptions]="{ standalone: true }"
+              />
+            </div>
+          </form>
+        </div>
+        <p class="btn btn-primary py-3 px-4" (click)="applyCoupon()">
+          Apply Coupon
+        </p>
+      </div>
+
+      <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+        <div class="cart-total mb-3">
+          <h3>Estimate shipping and tax</h3>
+          <p>Enter your destination to get a shipping estimate</p>
+          <form action="#" class="info">
+            <div class="form-group">
+              <label for="location">Country</label>
+              <select
+                [(ngModel)]="userLocation"
+                class="form-control text-left px-3"
+                (change)="caculateShippingandTaxCost()"
+                name="location"
+                id="location"
+                disabled
+              >
+                <option value="Viet Nam">Viet Nam</option>
+                <option value="England">England</option>
+                <option value="Singapore">Singapore</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+        <div class="cart-total mb-3">
+          <h3>Cart Totals</h3>
+          <p class="d-flex">
+            <span>Subtotal</span>
+            <span>$ {{ getSurbtotal() }}</span>
+          </p>
+          <p class="d-flex">
+            <span>Delivery</span>
+            <span>${{ getShippingCost() }}</span>
+          </p>
+          <p class="d-flex">
+            <span>Discount</span>
+            <span>${{ getDiscount() }}</span>
+          </p>
+          <hr />
+          <p class="d-flex total-price">
+            <span>Total</span>
+            <span>{{ getTotal() }}</span>
+          </p>
+        </div>
+        <p>
+          <a
+            class="btn btn-primary py-3 px-4"
+            [class.disabled]="cartItems.length == 0"
+            routerLink="/checkout"
+          >
+            Proceed to Checkout
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
