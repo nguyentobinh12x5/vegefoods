@@ -6,6 +6,8 @@ This is a README file for an simple ecommerce project built with Angular and Exp
 
 The project aims to create an simple ecommerce website using Angular for the frontend and Express.js for the backend server. It will provide users with a platform to browse and purchase various products.
 
+![alt text](image.png)
+
 ## Features
 
 - User authentication and authorization
@@ -49,4 +51,3 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
-To run the project using Docker, follow these steps:
