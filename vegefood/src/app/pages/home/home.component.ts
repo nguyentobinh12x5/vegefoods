@@ -26,9 +26,7 @@ export class HomeComponent {
       .getProducts(`${BASE_URL}/products`, { page, perPage })
       .subscribe({
         next: (products: Products) => {
-          console.log(products);
           this.products = products.items;
-          console.log(this.products);
           this.totalRecords = products.total;
         },
         error: (error) => {
